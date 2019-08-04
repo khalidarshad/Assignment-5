@@ -4,3 +4,6 @@ repo:
 	new_bitbucket_repo dominion
 spec:
 	cabal install && .hsenv/cabal/bin/dominion-spec
+	
+dominion:
+	g++ -Wall -g game.cpp conio.cpp Card.cpp Player.cpp
