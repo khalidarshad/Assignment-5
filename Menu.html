@@ -1,0 +1,50 @@
+<html>
+<head><title>Dominion - Menu</title>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+$("document").ready(function() {
+	if(window.webkitNotifications) {
+		if(window.webkitNotifications.checkPermission() == 0) { // allowed
+			$("#notifications").html('<h3>Notifications</h3><p>Notifications are already enabled.</p>');
+		} else {
+			$("#notifications").html('<h3>Notifications</h3><p>Click the button below the enable notifications.</p><input id="notificationbutton" type="button" value="Enable Notifications" />');
+			$("#notificationbutton").click(function() {
+				window.webkitNotifications.requestPermission();
+			});
+		}
+	} else {
+		$("#notifications").html('<p>Your browser doesn\'t support fancy HTML5 notifications.');
+	}
+});
+</script>
+</head>
+<body>
+<h1>Menu</h1>
+
+<h3>Host Game</h3>
+<form method="GET" action="/host">
+    <table style="border: 0">
+        <tr>
+            <td><label for="hostname">Game name: </label></td>
+            <td><input id="hostname" type="text" name="name" size=20 maxlength=50 /></td>
+        </tr>
+        <tr><td><input type="submit" value="Host Game" /></td></tr>
+    </table>
+</form>
+<br /><br />
+
+<h3>Join Game</h3>
+<form method="GET" action="/join">
+    <table style="border: 0">
+        <tr>
+            <td><label for="joinname">Game name: </label></td>
+            <td><input id="joinname" type="text" name="name" size=20 maxlength=50 /></td>
+        </tr>
+        <tr><td><input type="submit" value="Join Game" /></td></tr>
+    </table>
+</form>
+
+<div id="notifications"></div>
+
+</body></html>
